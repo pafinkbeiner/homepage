@@ -65,8 +65,10 @@ const Navbar = () => {
                     <Link
                       onClick={() =>{
                         
+                        // remove user from redux state
                         setUser(undefined)
                         
+                        // signout from firebase
                         fb
                           .auth()
                           .signOut()
