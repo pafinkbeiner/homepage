@@ -10,6 +10,7 @@ import { StoreProvider } from "easy-peasy";
 import store from "./store"
 
 import "./App.scss"
+import Footer from "./Components/Footer/Footer";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
               <Redirect to="/Home"/>
             </Route>
           </Switch>
+          <Footer/>
         </BrowserRouter>
       </div>
     </StoreProvider>

@@ -9,6 +9,7 @@ const Pages = (props) => {
     const user = useStoreState((state) => state.user);
 
   const [pages, setPages] = useState([]);
+  const [selectedPage, setSelectedPage] = useState(undefined)
 
   useEffect(() => {
     let ref = db.collection("pages");
@@ -35,20 +36,38 @@ const Pages = (props) => {
 
         {
             user ?
-            <>
-                <div></div>
+            <div className="columns">
 
-                <div className="columns">
-                {pages.length > 0 &&
-                    pages.map((page, index) => {
-                    return (
-                        <div className="column is-4" key={index}>
-                        <PageCard page={page}></PageCard>
+                <div className={selectedPage ? "column is-8" : "column"}>
+                  <div className="columns is-multiline">
+                  {pages.length > 0 &&
+                      pages.map((page, index) => {
+                      return (
+                        <div className="column is-one-third" key={index}>
+                          <PageCard page={page} setSelectedPage={setSelectedPage}></PageCard>
                         </div>
-                    );
-                    })}
+                      );
+                      })}
+
+                  </div>
+
                 </div>
-            </>
+                {
+                  selectedPage &&
+
+                  <div className="column is-4">
+                  
+                        <div className="column is-one-third">
+
+                          <button className="button" onClick={() => {setSelectedPage(undefined)}}>Close</button>
+
+                          <iframe src={selectedPage.url} title={selectedPage.title} style={{border: "none", width:"28rem", height:"50rem"}}></iframe>
+                        </div>
+                    
+                  </div>
+              }
+
+            </div>
             :
             <div className="columns">
                 <div className="column is-3">Please register to see content </div>

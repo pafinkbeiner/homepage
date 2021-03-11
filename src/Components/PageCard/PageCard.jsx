@@ -3,6 +3,7 @@ import React from 'react'
 const PageCard = (props) => {
 
     const {color, description, title, url} = props.page;
+    
 
     return (
         <div className="card">
@@ -10,6 +11,9 @@ const PageCard = (props) => {
                 <p className="card-header-title">
                     {title}
                 </p>
+                <span class="icon">
+                    <div style={{height: "20px", width: "20px", backgroundColor: `${color}`}}> </div>
+                </span>
             </header>
             <div className="card-content">
                 <div className="content">
@@ -22,9 +26,9 @@ const PageCard = (props) => {
                 </div>
             </div>
             <footer className="card-footer">
-                <a onClick={() => {}} className="card-footer-item">Save</a>
-                <a href="#" className="card-footer-item">Edit</a>
-                <a href="#" className="card-footer-item">Delete</a>
+                <a onClick={() => { props.setSelectedPage(props.page) }} className="card-footer-item">Show</a>
+                <a onClick={() => {}} className="card-footer-item">Edit</a>
+                <a onClick={() => {}} className="card-footer-item">Delete</a>
             </footer>
         </div>
     )
